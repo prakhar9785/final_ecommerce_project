@@ -25,7 +25,7 @@ const Home: React.FC = () => {
 
   const fetchFeaturedProducts = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/products?limit=8');
+      const response = await axios.get('https://ecommerce-backend-rihp.onrender.com/api/products?limit=8');
       setFeaturedProducts(response.data.products);
     } catch (error) {
       console.error('Error fetching featured products:', error);
