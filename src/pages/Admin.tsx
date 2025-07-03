@@ -42,7 +42,7 @@ const Admin: React.FC = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/products');
+      const response = await axios.get('https://ecommerce-backend-rihp.onrender.com/products');
       setProducts(response.data.products);
     } catch (error) {
       console.error('Error fetching products:', error);
@@ -61,10 +61,10 @@ const Admin: React.FC = () => {
       };
 
       if (editingProduct) {
-        await axios.put(`http://localhost:5000/api/products/${editingProduct._id}`, productData);
+        await axios.put(`https://ecommerce-backend-rihp.onrender.com/api/products/${editingProduct._id}`, productData);
         toast.success('Product updated successfully');
       } else {
-        await axios.post('http://localhost:5000/api/products', productData);
+        await axios.post('https://ecommerce-backend-rihp.onrender.com/api/products', productData);
         toast.success('Product added successfully');
       }
 
@@ -100,7 +100,7 @@ const Admin: React.FC = () => {
   const handleDelete = async (id: string) => {
     if (window.confirm('Are you sure you want to delete this product?')) {
       try {
-        await axios.delete(`http://localhost:5000/api/products/${id}`);
+        await axios.delete(`https://ecommerce-backend-rihp.onrender.com/api/products/${id}`);
         toast.success('Product deleted successfully');
         fetchProducts();
       } catch (error: any) {
