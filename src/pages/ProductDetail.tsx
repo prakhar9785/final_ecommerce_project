@@ -40,7 +40,7 @@ const [isWishlisted, setIsWishlisted] = useState(false);
 useEffect(() => {
   if (user && product) {
     // Fetch user's wishlist and check if this product is in it
-    axios.get('http://localhost:5000/api/wishlist', {
+    axios.get('https://ecommerce-backend-rihp.onrender.com/api/wishlist', {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
     }).then(res => {
       setIsWishlisted(res.data.wishlist.some((p: any) => p._id === product._id));
@@ -58,7 +58,7 @@ useEffect(() => {
   const fetchProduct = async (productId: string) => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/products/${productId}`
+        `https://ecommerce-backend-rihp.onrender.com/api/products/${productId}`
       );
       setProduct(response.data);
     } catch (error) {
@@ -91,7 +91,7 @@ const handleWishlist = async () => {
   try {
     if (isWishlisted) {
       await axios.post(
-        `http://localhost:5000/api/wishlist/remove/${product?._id}`,
+        `https://ecommerce-backend-rihp.onrender.com/api/wishlist/remove/${product?._id}`,
         {},
         { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
       );
@@ -99,7 +99,7 @@ const handleWishlist = async () => {
       toast.success('Removed from wishlist');
     } else {
       await axios.post(
-        `http://localhost:5000/api/wishlist/add/${product?._id}`,
+        `https://ecommerce-backend-rihp.onrender.com/api/wishlist/add/${product?._id}`,
         {},
         { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
       );
