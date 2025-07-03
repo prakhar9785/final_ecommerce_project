@@ -26,7 +26,7 @@ const handlePlaceOrder = async () => {
   // 1. Check stock for each product
   try {
     for (const item of items) {
-      const res = await fetch(`http://localhost:5000/api/products/${item.productId}`);
+      const res = await fetch(`https://ecommerce-backend-rihp.onrender.com/api/products/${item.productId}`);
       const product = await res.json();
       if (item.quantity > product.stock) {
         toast.error(`Not enough stock for "${item.name}". Only ${product.stock} left.`);
@@ -35,7 +35,7 @@ const handlePlaceOrder = async () => {
     }
 
     // 2. Place order
-    const res = await fetch('http://localhost:5000/api/orders', {
+    const res = await fetch('https://ecommerce-backend-rihp.onrender.com/api/orders', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
