@@ -25,7 +25,7 @@ const MyOrders: React.FC = () => {
   useEffect(() => {
     if (user) {
       axios
-        .get("http://localhost:5000/api/orders/my", {
+        .get("https://ecommerce-backend-rihp.onrender.com/api/orders/my", {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         })
         .then((res) => setOrders(res.data))
