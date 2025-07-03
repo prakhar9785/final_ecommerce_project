@@ -26,7 +26,7 @@ const Wishlist: React.FC = () => {
 
   const fetchWishlist = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/wishlist", {
+      const res = await axios.get("https://ecommerce-backend-rihp.onrender.com/api/wishlist", {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
       setWishlist(res.data.wishlist);
@@ -40,7 +40,7 @@ const Wishlist: React.FC = () => {
   const handleRemove = async (productId: string) => {
     try {
       await axios.post(
-        `http://localhost:5000/api/wishlist/remove/${productId}`,
+        `https://ecommerce-backend-rihp.onrender.com/api/wishlist/remove/${productId}`,
         {},
         { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
       );
