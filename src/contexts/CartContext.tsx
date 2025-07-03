@@ -171,7 +171,7 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
     const fetchCart = async () => {
       if (user) {
         try {
-          const res = await axios.get('http://localhost:5000/api/cart', {
+          const res = await axios.get('https://ecommerce-backend-rihp.onrender.com/api/cart', {
             headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
           });
           setItems(res.data.cart.map((item: any) => ({
@@ -198,14 +198,14 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
       return;
     }
     try {
-      await axios.post('http://localhost:5000/api/cart/add', {
+      await axios.post('https://ecommerce-backend-rihp.onrender.com/api/cart/add', {
         productId: product.productId,
         quantity: 1
       }, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
       // Refetch cart
-      const res = await axios.get('http://localhost:5000/api/cart', {
+      const res = await axios.get('https://ecommerce-backend-rihp.onrender.com/api/cart', {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
       setItems(res.data.cart.map((item: any) => ({
@@ -225,7 +225,7 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
   const removeFromCart = async (productId: string) => {
     if (!user) return;
     try {
-      await axios.post('http://localhost:5000/api/cart/remove', { productId }, {
+      await axios.post('https://ecommerce-backend-rihp.onrender.com/api/cart/remove', { productId }, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
       setItems(prev => prev.filter(item => item.productId !== productId));
@@ -243,7 +243,7 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
       return;
     }
     try {
-      await axios.put('http://localhost:5000/api/cart/update', { productId, quantity }, {
+      await axios.put('https://ecommerce-backend-rihp.onrender.com/api/cart/update', { productId, quantity }, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
       setItems(prev =>
@@ -260,7 +260,7 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
   const clearCart = async () => {
     if (!user) return;
     try {
-      await axios.post('http://localhost:5000/api/cart/clear', {}, {
+      await axios.post('https://ecommerce-backend-rihp.onrender.com/api/cart/clear', {}, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
       setItems([]);
